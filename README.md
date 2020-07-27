@@ -4,15 +4,15 @@
 
 <h3>Steps :-</h3>
 
-1. Create container image that’s has Jenkins installed  using dockerfile  Or You can use the Jenkins Server on RHEL 8/7
+1. Create container image that’s has Jenkins installed using dockerfile Or we can use the Jenkins Server on RHEL 8/7
 
-2.  When we launch this image, it should automatically starts Jenkins service in the container.
+2. When we launch this image, it should automatically start Jenkins service in the container.
 
-3.  Create a job chain of job1, job2, job3 and  job4 using build pipeline plugin in Jenkins.
+3. Create a job chain of job1, job2 and job3 using build pipeline plugin in Jenkins.
 
-4.  Job2 ( Seed Job ) : Pull  the Github repo automatically when some developers push repo to Github.
+4. Seed Job : Pull  the Github repo automatically when some developers push repo to Github.
 
-5. Further on jobs should be pipeline using written code  using Groovy language by the developer.
+5. Further on jobs should be pipelined using written code using Groovy language by the developer.
 
 6. Job1 :  
 
@@ -20,7 +20,9 @@
     
     2.  Expose your pod so that testing team could perform the testing on the pod.
     
-7.  Job3 : Test your app if it  is working or not. If app is not working , then send email to developer with error messages and redeploy the application after code is being edited by the developer.
+7. Job2 : Test your app if it is working or not.
+
+8. Job3. If app is not working , then send email to developer with error messages and redeploy the application after code is being edited by the developer.
 
 <h3>Requirements :-</h3>
  
@@ -33,6 +35,16 @@
  In this article we will learn how to create a Jobs/Pipeline in Jenkins using DSL.
 
  This is an update for the article :- https://github.com/gauravsjc02/DevOps-Task2
+ 
+ Here we are creating and executing all these jobs using DSL.
+ 
+ Launch The Jenkins from the docker image created, This image has kubectl configured in it.
+ 
+ <b>docker run -dit -p 8088:8080 --name kubjenkins jenkins
+    
+  After launching we'll setup the jenkins by providing the secrets or password to the jenkins.
+  
+  ![jen](https://github.com/gauravsjc02/DevOps-Task6/blob/master/Task6/secret.png)
  
  <h2> Plugins required to perform this task are :- </h2>
  
@@ -59,7 +71,7 @@
  
  Now, well create the seed job.
  
- SEED JOB : This job generates other jobs and is also attached to a webhook. It will run every time a developer pushes an update. 
+ SEED JOB : This job generates other jobs which is also attached to a webhook. It will run every time a developer pushes an update. 
 
  <h3> Generated Jobs </h3>
  
